@@ -75,7 +75,7 @@ select distinct LastName, HireDate from Employee where  Salary > 100000
 ##SQL Query Involving Several Relations
 
 select P.ProjNo, E.LastName from Employee E, Project P
-where P.RespEmp = E.EmpNo and P.DeptNo = `E21`
+where P.RespEmp = E.EmpNo and P.DeptNo = 'E21'
 
 For each project which department E21 is responsible, find the name of the employee in charge of that project
 
@@ -91,7 +91,7 @@ eliminate attributes
 ##Observations: Queries, Instances, Schema
 
 select P.ProjNo, E.LastName from Employee E, Project P
-where P.RespEmp = E.EmpNo and P.DeptNo = `E21`
+where P.RespEmp = E.EmpNo and P.DeptNo = 'E21'
 
 -query -written for a particular schema, works on any instance
 -schema- identifies what can be counted on
@@ -136,11 +136,11 @@ List the identifiers of employees working on software support (E21) projects as 
 select EmpNo 
 from Emp_Act A, Project P 
 where A.ProjNo = P.ProjNo 
-and P.DeptNo = `E21` 
-and EmStDate <= `01/01/2000`
-and EmEndDate <= `01/01/2000`
+and P.DeptNo = 'E21' 
+and EmStDate <= '01/01/2000'
+and EmEndDate <= '01/01/2000'
 
-the syntax above works in some RDBMs (relational data base management systems), however in SQL-99 datetime literals look like DATE `2000/01/01’
+the syntax above works in some RDBMs (relational data base management systems), however in SQL-99 datetime literals look like DATE '2000/01/01'
 
 Does this query return duplicates?
 Yes if an employee has more than one connection to E21 projects in the Emp_Act table
