@@ -70,7 +70,7 @@ duplicate tuples may be stored
 SQL queries may result in duplicates even if none of this input tables contain duplicates
 select distinct used to eliminate duplicates from a query result
 
-select distinct LastName, HireDate from Employee where  Salary > 100000
+`select distinct LastName, HireDate from Employee where  Salary > 100000`
 
 ##SQL Query Involving Several Relations
 ```
