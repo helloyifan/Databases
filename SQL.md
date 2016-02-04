@@ -202,9 +202,9 @@ Delete all employees in department A00 from the Employee table
 ##Example
 
 insert: statements can have an arbitrary query as input, but the schema of the result reaction must match the schema of the target reaction
-
+```
 insert into WellPaidEmps (EmpNo, Salary(
 select EmpNo, Salary
 from Employee
 where Salary > 100000
-
+```
