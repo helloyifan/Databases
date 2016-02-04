@@ -209,3 +209,57 @@ select EmpNo, Salary
 from Employee
 where Salary > 100000
 ```
+
+##SQL DML: Update
+
+```
+update Employee set Salary = Salary * 1.05;
+```
+Increase the salary of every employee by five percent
+
+```
+update Employee set WorkDept = `E01` where WorkDept = `E21`;
+```
+
+Move all employees in department E21  into department E01
+
+##Set Operations
+
+UNION, INTERSECT, and EXCEPT (set difference operations)
+
+```
+select EmpNo from Employee
+except
+select MgrNo from Department
+```
+
+results are sets
+- Q1 UNION Q2
+	- includes any tuple found (at least one) in Q1 or in Q2
+- Q1 INTERSECT Q2
+	- incudes any tuple found (at least once) in both Q1 and Q2
+- Q1 EXCEPT Q2
+	- includes any tuple found (at least once) in Q1 and not found in Q2
+
+###Examples
+
+List the identifiers of employyes who are managers or who are responsible for some project
+
+```
+select MgrNo from Department 
+
+union 
+
+select RespEmp from Project
+```
+
+List the employees who are not involved in any project activites as of Jan, 1, 1920
+
+```
+select EmpNo, LastName from Employee
+except
+select A.EmpNo, E.LastName from Emp_Act A, Employee E 
+where A.EmpNo = E.EmpNo
+
+and '1/1/1920' betweem A.EmStDate and A.EmEnDate
+```
