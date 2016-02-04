@@ -122,9 +122,9 @@ Conditions (i.e boolean valued expressions) may include
 arithmetic operators: +, -, *, /
 comparisons ==, <>, <, <=, >, >=
 logical connectives: and , or , not
-
+```
 select E.LastName from Employee E, Department D. Employee M where E.WorkDept = D.DeptNo and D.MgrNo = M.EmpNO and E.Salary > M. salary
-
+```
 List of last names of employees who make more than their managers
 
 Note:
