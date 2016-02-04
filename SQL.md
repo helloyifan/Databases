@@ -51,7 +51,7 @@ new physical structures without modifying the standard
 
 ##SQL DML: Queries
 
-select LastName, HireDate from Employee where Salary > 100000
+`select LastName, HireDate from Employee where Salary > 100000`
 
 -operational semantics
 filter out rows for which the condition is false
@@ -73,13 +73,13 @@ select distinct used to eliminate duplicates from a query result
 select distinct LastName, HireDate from Employee where  Salary > 100000
 
 ##SQL Query Involving Several Relations
-
+```
 select P.ProjNo, E.LastName from Employee E, Project P
 where P.RespEmp = E.EmpNo and P.DeptNo = 'E21'
-
+```
 For each project which department E21 is responsible, find the name of the employee in charge of that project
 
--operational semantics
+operational semantics
 form cross product
 filter rows
 eliminate attributes
@@ -90,9 +90,10 @@ eliminate attributes
 
 ##Observations: Queries, Instances, Schema
 
+```
 select P.ProjNo, E.LastName from Employee E, Project P
 where P.RespEmp = E.EmpNo and P.DeptNo = 'E21'
-
+```
 -query -written for a particular schema, works on any instance
 -schema- identifies what can be counted on
 -How do I know that RespEmp values in Project will correspond to EmpNO values in Employee?
@@ -102,7 +103,7 @@ No, because of a foreign key constraint from RespEmp to EmpNo, and because RespE
 
 ##The SQL Basic Query Block
 
-select attribute-expression-list from relation-list where condition
+`select attribute-expression-list from relation-list where condition`
 
 Note
 The result of such a query is a relation which has one attribute for each element of the query’s attribute-expression-lst
@@ -132,14 +133,14 @@ Conjunctive queries: select-from-where (without or , not)
 Examples:
 
 List the identifiers of employees working on software support (E21) projects as of January 1, 2000.
-
+```
 select EmpNo 
 from Emp_Act A, Project P 
 where A.ProjNo = P.ProjNo 
 and P.DeptNo = 'E21' 
 and EmStDate <= '01/01/2000'
 and EmEndDate <= '01/01/2000'
-
+```
 the syntax above works in some RDBMs (relational data base management systems), however in SQL-99 datetime literals look like DATE '2000/01/01'
 
 Does this query return duplicates?
@@ -147,13 +148,13 @@ Yes if an employee has more than one connection to E21 projects in the Emp_Act t
 
 ###Question
 List the identifiers and names of department managers who are also responsible for projects “owned” by departments other than their own
-
+```
 select E.EmpNo, E.LastName 
 from Employee E, Department D, Project P 
 where E.EmpNo = D.MgrNo
 and E.EmpNo = P.RespEmp
 and D.DeptNo <> P.DeptNo
-
+```
 Does the query return duplicates
 Yes If an employee manages multiple departments, or if he manages one but is responsible for multiple projects
 
@@ -164,12 +165,12 @@ Return the difference between each employee’s actual salary and a base salary 
 select E.EmpNo, E.Salary - 4000 as SalaryDIff from Employee E
 
 As above, but report zero if the actual salary is less than the base salary
-
+```
 select E.EmpNo, 
 case 	when E.Salary < 40000 then 0
 	else E.Salary - 40000 end
 from Employee E
-
+```
 ##Expressions
 
 Expression operators include
@@ -183,10 +184,10 @@ datetime functions, e.g current date()
 expressions without explicit ’as’ clause are assigned default attribute names (integers)
 
 ##SQL DML: Insertion & Deletion
-
+```
 insert into Employee
 values (‘0350’, ‘Sheldon’, ‘Q’, ‘Jetstream’, ‘A00’ , 01/10/2000, 25000.00);
-
+```
 Insert a single tuple into the Employee relation
 
 delete from Employee; 
