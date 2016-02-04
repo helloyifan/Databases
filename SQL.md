@@ -194,9 +194,10 @@ delete from Employee;
 
 Delete all employees from the Employee table
 
+```
 delete from Employee 
 where WorkDept = ‘A00’;
-
+```
 Delete all employees in department A00 from the Employee table
 
 ##Example
