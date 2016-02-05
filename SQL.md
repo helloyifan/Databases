@@ -1,3 +1,7 @@
+##Integrity Constraints in SQL
+
+Most
+
 #Structured Query Language (SQL) 
 
 ##Structured Query Language (SQL) 
@@ -264,6 +268,21 @@ where A.EmpNo = E.EmpNo
 and '1/1/1920' betweem A.EmStDate and A.EmEnDate
 ```
 ...
+##Integrity Constraints in SQL
+
+Most commonly used- SQL schema constraints
+
+- Not NUll
+- Primary Key
+- Unique
+- Foreign Key
+- Column or Tuple Check
+
+Recent SQL standards also allow more powerful integrity constraints. However they are not supported by all commecial DBMSs
+
+
+
+
 ##Triggers
 
 A trigger is a procedure executed by the database in response to the change to the database instance
