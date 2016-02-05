@@ -272,5 +272,11 @@ A trigger is a procedure executed by the database in response to the change to t
 Basic compoents of a trigger description
 
 **Event**: Type of change that should cause trigger to fire
+
 **Condition**: Test performed by trigger to determine whether further action is needed
+
 **Action** Procedure executed if condition is met
+
+Trigger only happens on some event, in the case of integrity constraint will be enforced for all changes in the table, triggers only specific cases.
+
+Note use the integrity constraint used in the textbook
