@@ -3,17 +3,17 @@
 ##Structured Query Language (SQL) 
 is made up of two sub-languages
 
--SQL Data Manipulate Language (DML)
-	-Select statements
+- SQL Data Manipulate Language (DML)
+	- Select statements
 		- perform queries
-	-Insert, Update, Delete statements
+	- Insert, Update, Delete statements
 		- modify the instance of a  table
--SQL Data Definition Language (DDL)
+- SQL Data Definition Language (DDL)
 	- Create, Drop statements
 - Modify the database schema
-	-Grant, Revoke statements
-		-enforce the security model
-		Data Control Language (DCL)
+	- Grant, Revoke statements
+		- enforce the security model
+		- Data Control Language (DCL)
 
 History of SQL Language
 
