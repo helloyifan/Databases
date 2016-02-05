@@ -263,3 +263,14 @@ where A.EmpNo = E.EmpNo
 
 and '1/1/1920' betweem A.EmStDate and A.EmEnDate
 ```
+...
+##Triggers
+
+A trigger is a procedure executed by the database in response to the change to the database instance
+
+
+Basic compoents of a trigger description
+
+**Event**: Type of change that should cause trigger to fire
+**Condition**: Test performed by trigger to determine whether further action is needed
+**Action** Procedure executed if condition is met
