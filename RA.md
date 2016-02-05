@@ -44,4 +44,4 @@ rename: p(Movies(title ->name, actor->performer), Film)
 ##Product (x)
 
 Product: E1 x E2
--result shemaL has akk the attributes of E1 *and* all attributes of E2
+-result schema has all the attributes of E1 **and** all attributes of E2
