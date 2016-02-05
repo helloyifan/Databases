@@ -47,3 +47,6 @@ We can delete a GoodStudents row bt delteing the corresponding row in student
 While the SQL rules on updateable views are more stric than necessary there are some fundamental problems with updates specified on views and good reaon to limit the class of views that can be updated...
 
 We can insert a GoodStudents row by inserting a row into students, using null valuse in Columns of student that do not appear in GoodStudents (sname, Login)
+
+##updating External Schmea is difficult
+
