@@ -16,5 +16,32 @@ E - relational algebra expression+
 σcondition(E)
 - result schema: same as E's
  - preseves all columns
+
 -real instance: subset of E's tuples that satisfy the condition
  - Filters some rows
+
+##Projection (π)
+
+- πattributes(E)
+- result schema: only the specified attributes
+ - filters some columns
+
+- result instance: could have as amany tuples as E except that dupicates are eliminated (*)
+ - preserves all rows
+
+
+## Rename: (p)
+
+Rename: p(R(F), E)
+F - list of terms of the form oldname -> new name
+
+- result schema: E's schema with columns renamed according to F 
+- result instance : same as E's
+- remebers the result as R for future expressions
+
+rename: p(Movies(title ->name, actor->performer), Film)
+
+##Product (x)
+
+Product: E1 x E2
+-result shemaL has akk the attributes of E1 *and* all attributes of E2
