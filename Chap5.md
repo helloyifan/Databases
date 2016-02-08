@@ -67,3 +67,22 @@ Incidentally, when we want to retrieve all columns as  in this query, we can use
 Recall
 the SELECT clause is actually used to do projection,
 whereas selections in the relational algebra sense are expressed using the WHERE clause! 
+
+##Union, Intersect and Except
+
+Set-manipulation constructs that extend the basic query form presented ealier.
+
+Find the names of sailor's who have reserved both a red and a green boat.
+
+```
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = red 
+
+union
+
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = green
+```
+
