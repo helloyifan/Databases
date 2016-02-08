@@ -139,5 +139,71 @@ where (   select r.bid
 **Correlation**: The occurence of a range variable in a subquery.
 **Correlated Queries**:  A query that uses values from the outer query.
 
+-IN
 -By using NOT EXISTS instead of EXISTS we can compute the name of teh sailors WHO HAVE NOT RESERVED A RED BOAT.
 -Closely there exists the Unique predicate (and NOT UNIQUE)
+
+###Set-Comparison Operators
+
+SQL supports Any and  All with comparison operators {<, <=, =, <>, >=, >}.
+
+Find sailors whose rating is better than every sailor' called Horat·to.
+```
+Select S.name
+from Sailors S
+where S.rating > All(
+
+select s1.rating
+from sailors s1
+where s1.name = 'HORATIO'
+)
+```
+
+Find the 8ailor's with the highest rating.
+
+```
+Select S.name
+from Sailors S
+where S.rating >= All{
+
+select s1.rating
+from  sailors s1
+}
+```
+The outer where is only satisfied only when S.rating is greater than or equal TO EACH OF THESE CONDITIONS
+
+In is not equivalent to = ANY
+Not in is not equivalent to <> ALL
+
+##5.5 Aggregate Operators
+
+1. COUNT: The number of uniquie values in A column;
+2. SUM: The sum of all uniquie values
+3. AVG
+4. MAX
+5. MIN
+
+Note: It does not make sense to specify DISTINCT in conjuction with MIN or MAX but it does with the others
+
+RA and SQL: Aggregation is a fundamental operation that cannot be expressed in RA
+Similarly SQL's grouping construct cannot be expressed in algebra.
+
+
+### GROUP BY and HAVING Clauses
+
+Purpose of grouping is to avoid writing the same queries when only needing to change one variable
+```
+SELECT [ DISTINCT] select-list
+FROM from-list
+WHERE 'qualification
+GROUP BY grouping-list
+HAVING group-qualification
+```
+
+Find the age of the youngest sailor for each rating level.
+
+```
+select S.rating , Min (S.age)
+from Sailors.S
+Group by S.rating
+```
