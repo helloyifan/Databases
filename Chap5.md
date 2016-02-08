@@ -20,22 +20,50 @@ FROM from-list
 WHERE qualification
 ```
 
-Every query must have SELECT clause, which specifies COLUMNS to be retained in the result.
-a FROM clause: which specifies a cross-product on tables.
-option WHERE clause: specifes selection conditions on the tables mentioned in the FROM
+**SELECT**: Every query must have SELECT clause, which specifies COLUMNS to be retained in the result.
+- the select list is a list of (expressions involing) COLUMNS NAMES of tables named in the from list.
+- columns names can be prefixed by a range variable
+
+**FROM**: a FROM clause which specifies a cross-product on tables.
+- the from-list is a list of TABLE NAMES (can be followed by a range variable)
+
+**WHERE**: optional WHERE clause: specifes selection conditions on the tables mentioned in the FROM
+- condtions 
+- logical operators
+- comparision operators
+- boolean combination of condtions of the form of expression(s)
+- **expression**: column name, constant  or an (arithmetic or string) expression
 
 The close relationship between SQL and relational algebra is the basis for query optimization in a relational DBMS
 
 ```
-SELECT DISTINCTT S.sname, S.age
+SELECT DISTINCT S.sname, S.age
 From Sailors S
 ```
 This query is equivalent to applyng the the PROJECTION operator of RA
 
 Distint: we could get a copy of rows, prevents multiset
+-optional
+- it indicates that the table should not complain diplicates (two copies of the same row)
+- by default, duplicates are not eliminated.
+
 Multiset: Similar to a set that is unordered collection of elements, but there could be several copies of each element
 and the number of copies is significant. two multisets could have  the same elements and yet be different because the number of copies is different for some elements.
 
 
+```
+SELECT S.sid, S.sname, S.rating, S.age
+FROM Sailors AS S
+WHERE S.rating > 7
+```
 
+This query is equivalent to the SELECTION operator of ra
 
+This query uses the OPTIONAL KEYWORD AS. to introduce a RANGE VARIABLE. 
+
+Incidentally, when we want to retrieve all columns as  in this query, we can use (*)
+(*) Is useful for interactive querying , but it is poor style for queries that are intedend to be reused and maintained because  the schema of the result is not clear from the query itself.
+
+Recall
+the SELECT clause is actually used to do projection,
+whereas selections in the relational algebra sense are expressed using the WHERE clause! 
