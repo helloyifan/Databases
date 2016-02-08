@@ -239,3 +239,14 @@ Tis is a depatures from the basic model
 
 ##5.6 Null Values
 
+SQL provides a special column value called null to use in such situations. We use null when the column value is either unknown or inapplicable.
+The presences of null valuse complicates many issues, and we consider the impact of null values on SQL in this section.
+
+SQL provides a special comparsion operator IS NULL to test whether a column valuse is null. (IS NOT NULL)
+
+SQL uses three-valued logc (true, false ,unknown)
+
+Literally from the textbook "The expression NOT unknown is defined to be unknown."
+
+In the where clause: any row that evaluates to NULL of FAlse is eliminated
+
