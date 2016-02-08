@@ -250,3 +250,78 @@ Literally from the textbook "The expression NOT unknown is defined to be unknown
 
 In the where clause: any row that evaluates to NULL of FAlse is eliminated
 
+##5.7 Complex Integrity Constaints in SQL
+
+SQL constraints are used to specify rules for the data in a table.
+
+If there is any violation between the constraint and the data action, the action is aborted by the constraint.
+
+Constraints can be specified when the table is created (inside the CREATE TABLE statement) or after the table is created (inside the ALTER TABLE statement).
+
+
+###Constraints over a single table
+**Check**: Conditional expression is used over a single table cnstaints
+
+```
+CREATE TABLE Sailors ( sid INTEGER,
+sname CHAR(10),
+rating INTEGER,
+age REAL,
+PRIMARY KEY (sid),
+CHECK (rating >= 1 AND rating <= 10 ))
+```
+
+###Domain Constraint
+A user can define a new domain using the CREATE DOMAIN statement, which uses check constraints
+```
+CREATE DOMAIN ratingval INTEGER DEFAULT 1
+CHECK ( VALUE >= 1 AND VALUE <= 10 )
+```
+
+Domains: are basically datatypes with a constraint
+
+```
+CREATE TYPE ratingtype AS INTEGER
+```
+
+Defines a new distinct type called rating type, with INTEGER  type sources
+Rating types can be compared with each others, but cannot be compared with values of other types. (Threated different from types)
+We can use predefined operations, must do so explicitly
+
+Table constraints are associated with a single table. Check can refer to other  tables.
+Table constraints are required to hold only if the associated table is nonempty.
+
+When a constraints involves two or mor tables. (This table constraints may not be desired)
+SQL also supporsts CREATE ASSERTION  (which are constraints not associated with anyone table) to deal with this situation
+
+Example: Constraints is number of boats plus the number of sailors should be less than 100
+```
+CREATE TABLE Sailors(sid integer
+                     sname CHAR(10),
+                     rating INTEGER,
+                     age REAL,
+                     PRIMARY KEY (sid),
+                     CHECK((rating >=1 AND rating <= 10))
+                     CHECK((SELECT COUNT (S.sid) FROM Sailor S) + (SELECT COUNT (B.Bid) FROM Boats B) < 100))
+```
+
+Draw backs:
+- Associated with sailor although it involes Boats in a completely symmetric way
+- If the sailrs table was empty, this constraints is defined (as per the semantics of table constraints) to always hold, even if we have more then 100 rows in boats
+
+Better solution Assertions
+```
+CREATE ASSERTION smallClub
+CHECK((SELECT COUNT (S.sid) FROM Sailor S) + (SELECT COUNT (B.Bid) FROM Boats B) < 100))
+```
+
+##5.6 Triggers and Active Databases
+
+Trigger: A procedures that is automatically invoked by the DBMS to reponse to specified changed in the database
+Active Dataase : A db that has a set of associated triggers
+
+Event: A change to the db that activates the rigger
+
+Condition: A query or tests that is run when the trigger is activated
+
+Action: A procedures that is executed when the trigger is activated and the condition is ture
