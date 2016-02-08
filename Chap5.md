@@ -72,7 +72,9 @@ whereas selections in the relational algebra sense are expressed using the WHERE
 
 Set-manipulation constructs that extend the basic query form presented ealier.
 
-Find the names of sailor's who have reserved both a red and a green boat.
+**UNION OR**
+
+Find the names of sailor's who have reserved both a red or a green boat.
 
 ```
 select S'name 
@@ -85,4 +87,54 @@ select S'name
 from Sailors S, Reserves R, Boats B
 where S.sid = R.sid and R.bid = B.bid and B.color = green
 ```
+
+**INTERCEPT AND**
+
+Find the names of sailor's who have reserved both a red and a green boat.
+
+```
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = red 
+
+INTERESECT
+
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = green
+```
+**EXCEPT NOT**
+
+Find the names of sailor's who have reserved both a red BUT NOT a green boat.
+
+```
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = red 
+
+EXCEPT
+
+select S'name 
+from Sailors S, Reserves R, Boats B
+where S.sid = R.sid and R.bid = B.bid and B.color = green
+```
+
+##5.4 Nested Queries
+
+- Nesting of queries is a feature that is not in RA.
+- Nestest queries can be transltaed into algebra.
+- Nesting in SQL is inspired more by relational calculus than algebra
+- Nesting is very expressive construct 
+
+Find the names of sailors who have reserved boat 103.
+
+```
+select s.name
+from sailors s
+where (   select r.bid 
+          where reserves r
+          where r.bid = 103)
+```
+
+**Correlated Queries**: 
 
