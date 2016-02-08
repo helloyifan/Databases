@@ -315,7 +315,7 @@ CREATE ASSERTION smallClub
 CHECK((SELECT COUNT (S.sid) FROM Sailor S) + (SELECT COUNT (B.Bid) FROM Boats B) < 100))
 ```
 
-##5.6 Triggers and Active Databases
+##5.8 Triggers and Active Databases
 
 Trigger: A procedures that is automatically invoked by the DBMS to reponse to specified changed in the database
 Active Dataase : A db that has a set of associated triggers
@@ -323,5 +323,37 @@ Active Dataase : A db that has a set of associated triggers
 Event: A change to the db that activates the rigger
 
 Condition: A query or tests that is run when the trigger is activated
+- Can be a ture/false statement
+- A query is interpreted as true if the answer set is nonempty and false if the query has no answer
 
 Action: A procedures that is executed when the trigger is activated and the condition is ture
+- Can examine the answers to the query in the conditon part of the trigger
+- refer to old and new values of tuples modified in the statement by the activating trigger
+- excute new queries and make changes to the db
+
+Issues with trigger is we may want its actions to execute before changes are made or  maybe afterwards.
+- A trigger that initializes a variable used to count the number of qualifying insertions should be executed before
+- A trigger that excutes once per qualifiyng inserted record and increments the variable should be executed after each record is inserted
+
+Example
+The trigger called iniLcount initializes a counter variable before every execution of an INSERT statement that adds tuples to the Students relation. 
+
+The trigger called incr_count increments the counter for each inserted tuple that satisfies the condition age < 18.
+
+```
+CREATE TRIGGER  initCount BEFORE INSERT ON Students
+          Declare 
+                    count INTEGER       /*Event* /
+          BEGIN
+                    count :=0;           /* ACTION */
+          END
+```
+```
+CREATE TRIGGER  incCount AFTER INSERT ON Students
+          WHEN (neg.age < 18)                     /*Condition: new is just-inserted tuple* /
+          FOR EACH ROW
+                    count INTEGER                 
+          BEGIN
+                    count := count + 1;       /* ACTION: a procedures in Oracle's PL/SQL */
+          END
+```
