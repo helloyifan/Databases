@@ -280,7 +280,38 @@ Most commonly used- SQL schema constraints
 
 Recent SQL standards also allow more powerful integrity constraints. However they are not supported by all commecial DBMSs
 
+**Constraints over a Single Table**
 
+We can specify complex constraints over a single table using table constraints, which ahve a form CHECK condition expression
+```
+CREATE TABLE Sailors ( 	sid INTEGER,
+			sname CHAR(10),
+			rating INTEGER,
+			age REAL,
+			PRIMARY KEY (sid),
+			CHECK (rating >= 1 AND rating <= 10 ))
+```
+**Domain Constraints and Distinct Types**
+A user can defined a new domain using the CREATE DOMAIN statment which uses a CHECK constraint
+```
+CREATE DOMAIN ratingval INTEGER DEFAULT 1
+CHECK ( VALUE >= 1 AND VALUE <= 10 )
+```
+
+Once a domain is defined , the name of the domain can be used to restict column valuse in a table.
+
+We can now use this in a schema declaration
+```
+rating ratingval
+```
+
+**Declaring a type:** Values of type ratingtype can be compared with each other, but they cannot be compared with values of other types
+If we want to define operations on the new type, for example, an average function, we must do so explicitly; none of the existing operations on the source type carryover.
+```
+CREATE TYPE ratingtype AS INTEGER
+```
+
+**Assertions: Which are Constraints over Several Tables**
 
 
 ##Triggers
