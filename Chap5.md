@@ -139,9 +139,9 @@ where (   select r.bid
 **Correlation**: The occurence of a range variable in a subquery.
 **Correlated Queries**:  A query that uses values from the outer query.
 
--IN
--By using NOT EXISTS instead of EXISTS we can compute the name of teh sailors WHO HAVE NOT RESERVED A RED BOAT.
--Closely there exists the Unique predicate (and NOT UNIQUE)
+- IN
+- By using NOT EXISTS instead of EXISTS we can compute the name of teh sailors WHO HAVE NOT RESERVED A RED BOAT.
+- Closely there exists the Unique predicate (and NOT UNIQUE)
 
 ###Set-Comparison Operators
 
