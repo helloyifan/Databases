@@ -288,6 +288,9 @@ Defines a new distinct type called rating type, with INTEGER  type sources
 Rating types can be compared with each others, but cannot be compared with values of other types. (Threated different from types)
 We can use predefined operations, must do so explicitly
 
+###Assertions: Which are Constraints over Several Tables
+
+
 Table constraints are associated with a single table. Check can refer to other  tables.
 Table constraints are required to hold only if the associated table is nonempty.
 
@@ -309,7 +312,7 @@ Draw backs:
 - Associated with sailor although it involes Boats in a completely symmetric way
 - If the sailrs table was empty, this constraints is defined (as per the semantics of table constraints) to always hold, even if we have more then 100 rows in boats
 
-Better solution Assertions
+Better solution **Assertions**
 ```
 CREATE ASSERTION smallClub
 CHECK((SELECT COUNT (S.sid) FROM Sailor S) + (SELECT COUNT (B.Bid) FROM Boats B) < 100))
