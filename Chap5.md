@@ -468,3 +468,25 @@ If such a clause was includeds, it follows the `FOR EACH STATEMENT` clause just 
 The tigger is evaluated once for each SQL statement that inserts tuples into Students, and inserts a single tuple into a table.
 
 The first two fields of the tuple contains constants (identifying the modified tables, Students, and the kind of modifying statement, an INSERT), and the third field is the number of inserted Students tuples with age < 18
+
+##5.9 Designing Active DB
+
+#### 5.9.1 Why triggers are hard to understand
+In an achtive database. the DBMS changes whether some trigger is activated by the statement before executing a statement that modies the db.
+
+If so, the DBMS processes the trigger (evaluate conditon, if its true execute action)
+
+If a statement activates more than one trigger, the DBMS typically processes all of them in arbitrary order.
+IMPORTANT POINT IS ACTIVATING A TRIGGER COULD IN ACTION ACTIVATE ANOTHER TRIGGER
+
+Potential for chain activations and the unpredicatable roder in which a DBMS processes activated triggers can make it difficult to understand the effect of a collection of triggers.
+
+#### 5.9.2 Constraints versus Triggers
+The meaning of an integrity constraint is not defined operationally, while the effect of a trigger is.  
+
+An integrity constraint gives the DBMS more opportunities to optimize execution.  
+Also itprevents data from being made inconsistent by any kind of statement, while a trigger is activated bya specical kind of statement.  
+Triggers allow more flexibility in maintaining database integrity and also can be used to create alerts for unusual events.
+
+Integrity constraints should be used when a high degree of importance is placed on execution and whenmultiple types of statements can cause integrity problems in the data.
+Triggers should be used for specifc statements or events, and when the effect is defined procedurally.
