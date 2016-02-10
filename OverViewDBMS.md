@@ -5,6 +5,7 @@
 **Definition (Database Managment System (DMBS)):** A programm (or set of progams) that manages details related to storage and access of a database
 
 **Definition (Schema):** A description of the data interface to the database (how the data is organized)
+
 1. External Schema (view): What the application progaams and user see. May differ for different users of the same database.
 2. Conceptual Schema: description of the logicl structure of all data in the database.
 3. Physical/internal schema: description of physical aspects (selection of files, devices, stroage algorithms)
