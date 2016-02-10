@@ -314,7 +314,17 @@ SELECT S.sid, R.bid
 FROM Sailor S NATURAL LEFT OUTER JOIN Reserves R
 ```
 
-Natural: specifies that the join condion is equality on all common attributes (in this examlpe only sid) and the WHERE clause is not required (unless we want specificy addtional, non-join conditions
+**Natural**: specifies that the join condion is equality on all common attributes (in this examlpe only sid) and the WHERE clause is not required (unless we want specificy addtional, non-join conditions
+
+###5.6.6 Disallowing Null Values.
+
+We can disallow numm valuse by specifying NOT NULL as part of the field defition
+
+```
+sname CHAR(20) NOT NULL
+```
+
+In addition primary keys are not alloed totake on null values
 
 ##5.7 Complex Integrity Constaints in SQL
 
@@ -326,7 +336,7 @@ Constraints can be specified when the table is created (inside the CREATE TABLE 
 
 
 ###Constraints over a single table
-**Check**: Conditional expression is used over a single table cnstaints
+**Check**: Conditional expression is used over a single table constaints
 
 ```
 CREATE TABLE Sailors ( sid INTEGER,
