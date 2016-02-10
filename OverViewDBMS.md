@@ -35,7 +35,8 @@ for specifying queries and updates
 An application-specified atomic and durable unit of work
 
 Properties of transactions ensured by the DBMS(ACID)
-Atomic: A transaction occurs entirely, or not at all
-Consistency: each transaction preserves the consistsency of the database
-Isolated: concurrent transactions do not interfer with each other
-Durable: once completed, a transaction's changes are permanent
+
+- Atomic: A transaction occurs entirely, or not at all
+- Consistency: each transaction preserves the consistsency of the database
+- Isolated: concurrent transactions do not interfer with each other
+- Durable: once completed, a transaction's changes are permanent
