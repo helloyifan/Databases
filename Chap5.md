@@ -242,13 +242,79 @@ Tis is a depatures from the basic model
 SQL provides a special column value called null to use in such situations. We use null when the column value is either unknown or inapplicable.
 The presences of null valuse complicates many issues, and we consider the impact of null values on SQL in this section.
 
-SQL provides a special comparsion operator IS NULL to test whether a column valuse is null. (IS NOT NULL)
 
-SQL uses three-valued logc (true, false ,unknown)
+
+
 
 Literally from the textbook "The expression NOT unknown is defined to be unknown."
 
 In the where clause: any row that evaluates to NULL of FAlse is eliminated
+
+####5.6.1 Comparisons Using Null Values
+```
+rating = 8.
+```
+Since rating is unknown, it is resonable to say that this comparison should evaluate to the value unknown. This is the case for rating > 8 and rating < 8
+
+Perhaps less obviously, if we compare two null values using <,>,= and so one, the result is always unknown.
+
+SQL provides a special comparsion operator IS NULL to test whether a column valuse is null. (IS NOT NULL)
+
+####5.6.2 Logical Connectives AND, OR, and NOT
+SQL uses three-valued logc in which values evaluat to(true, false ,unknown)
+
+The expression `NOT unknown` is defiend to be unknown.
+OR 
+- either is true, evalues to true
+- if one unkown, one false, then its unknown
+
+AND
+- false if either false 
+- if one unkown and one true or unknown , then its unknown
+
+####5.6.3 Impact on SQL Constructs 
+For example, the qualificaiton in the WHERE clause eliminates rows (in the cross-product of tables named in the FROM clause) for which the qualification does not evaluate to true.
+
+In the presence of null values, any row that evaluates to false or unknown is eliminated.
+
+Eliminating rows that evaluate to unknown has a subtle but significant impact on queries especically nested queries involving EXISTS or UNIQUE
+
+Another issue: When two ruws in a relation instanec are regardes as duplicates. 
+
+The SQL definition is that two rows are duplicates if corresponding columns are either equal orborh contain null.
+
+Construct this definition with the fact that if we compare two null valuse using =, the result is unknown
+In the context of duplicates, this comparison is implicity treated as true which is an anomaly
+
+* Arithmetic Operations (+-*/) return null if one of their arguments is null.
+* Aggreate Operations can handle null values (COUNT(*) counts it). All the other aggregate operations (COUNT, SUM, AVG,
+MIN, MAX, and variations using DISTINCT) disgards null value
+* Sum doesnt sum since its sill arithmetic
+* Special case, with the exception of count(*) is applied to only null values, the result again is null
+
+####5.6.4 Outer Joins
+
+outer joins are supported in SQL.
+
+Consider the join of two table:
+ie: Joining `Sailors ⋈c Reserves`. Tuples of Sailor that do not match some row in Reserves according to the join condtion c do not appear in the result.
+
+Outer joins on the other hand, Sailor rows without a matching Reserves row appear exactly once in the result with the result columns inherited from Reserves assigned values
+
+Types of Outer Joins
+- Left outer joins: sailor rows without a matching reserves row appear in the result, but not vice versa
+- Right outer join: reserves row without matching sailors appear in the result, but not vice versa
+ 
+In a full outer join, both Sailors and Reserves rows without a match appear in the result (ofc rows that match appear in the result as usual joins, sometimes called inner joins)
+
+SQL allows the desired type of join t obe specified in the FROM clause.
+
+```
+SELECT S.sid, R.bid
+FROM Sailor S NATURAL LEFT OUTER JOIN Reserves R
+```
+
+Natural: specifies that the join condion is equality on all common attributes (in this examlpe only sid) and the WHERE clause is not required (unless we want specificy addtional, non-join conditions
 
 ##5.7 Complex Integrity Constaints in SQL
 
