@@ -3,7 +3,63 @@
 Definition View:
 A view is a relation in the external schema whose instance is determined by the instances of the relations in the conceptual schema.
 
+A view has many of the same properties as a base relation in the conceptual schema
+* its schema information appears in the database schema
+* access controls can be applied to it
+* other views can be defined in terms of it
+
+Types of views
+
+* virtual: views are used only for querying, they are not stored in the db
+* materialized: the query that make sup the view is executed, the view constructed and stored in the database
+
+## SQL DDL: Views
+
+General form
+```
+create [materialized] view <name> as query<>
+```
+Example
+
+```
+create view ManufactProject as 
+(
+select projno, proj name, firstname
+from project, employee
+where respemp = empno and deptno = 'D21'
+)
+```
+
+##Accessing a view
+
+Query a view as if it were a base relation
+```
+select projname
+from ManufactProject
+```
+
+What happens when you query a virtual view?
+* At compile time, the view definition is found
+* The query over the view is modified with the query definition
+* The resulting query is optimized and executed
+
+
+##Updating Views
+
+* Modifications to a view's instance must be propagated back to instances of relations in conceptual schema
+* Some views cannot be updated unambiguously
+
+According to SQL-92 a views is updatable only if its definition satisfies a variety of conditions
+* The query references exactly one table
+* The query only outputsts simple attribues (no expressions)
+* There is no grouping/aggregating/distinct
+* There are no nested queries
+* There are no set operations
+
+These rules are more restrictive than necessary
+
 ---
+
 
 A view is a table whose rows are not explicitly stored in the database but are computed as needed from a view definition
 
