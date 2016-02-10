@@ -67,7 +67,7 @@ Tuple level
 
 Relation-level
 - function dependcies 
-- key constaints
+- key constaints: a statement that a certain minimal subset of the fields of a relation is a unique identifier for a tuple.
  - super key: a set of attributes for which no pair of distinct tuples in the realtion will ever agree on the corresponding values
  - candidate key: a minimal superkey ( a minimal set of attributes that uniquely identifies a tuple_
  - primary ley: a designated candidate key
