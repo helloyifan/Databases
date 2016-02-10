@@ -414,6 +414,8 @@ Issues with trigger is we may want its actions to execute before changes are mad
 - A trigger that initializes a variable used to count the number of qualifying insertions should be executed before
 - A trigger that excutes once per qualifiyng inserted record and increments the variable should be executed after each record is inserted
 
+####5.81 Examples of Trigger 
+
 Example
 The trigger called iniLcount initializes a counter variable before every execution of an INSERT statement that adds tuples to the Students relation. 
 
@@ -429,10 +431,40 @@ CREATE TRIGGER  initCount BEFORE INSERT ON Students
 ```
 ```
 CREATE TRIGGER  incCount AFTER INSERT ON Students
-          WHEN (neg.age < 18)                     /*Condition: new is just-inserted tuple* /
+          WHEN (new.age < 18)                     /*Condition: new is just-inserted tuple* /
           FOR EACH ROW
                     count INTEGER                 
           BEGIN
                     count := count + 1;       /* ACTION: a procedures in Oracle's PL/SQL */
           END
 ```
+
+The keyword `new` refers to the newly intserted tuple. 
+If an existing tuple was modified , the keywords `old` and `new` could be used to refer to the vakuese before and after the modification.
+
+SQL 1999: also allows the action part of a trigger to refer to thet set of changed records. rather than just one changed record at a time.
+
+For example it would be useful to be able to refer to the set of inserted Students reconds in a trigger that executes once after the insert statement, we could count the number of inserted recrods with age < 18 through an SQL query over this set.
+
+```
+CREATE TRIGGER seLcount AFTER INSERT ON Students /* Event */
+REFERENCING NEW TABLE AS InsertedTuples
+FOR EACH STATEMENT
+          INSERT /* Action */
+                    INTO StatisticsTable(ModifiedTable, ModificationType, Count)
+                    SELECT 'Students', 'Insert', COUNT *
+                    FROM InsertedTuples I
+                    WHERE I.age < 18
+```
+
+
+`NEW TABLE` enables us to give a table name (InsertedTuples) to the set of newly inserted tuples
+
+`for each statement` clause specifes a statement level trigger and can be omitted because it is the default
+
+This definition does not have a `WHEN` clause. 
+If such a clause was includeds, it follows the `FOR EACH STATEMENT` clause just before the action specification.
+
+The tigger is evaluated once for each SQL statement that inserts tuples into Students, and inserts a single tuple into a table.
+
+The first two fields of the tuple contains constants (identifying the modified tables, Students, and the kind of modifying statement, an INSERT), and the third field is the number of inserted Students tuples with age < 18
