@@ -234,6 +234,19 @@ Group-by s.rating
 Having count(*) > 1
 ```
 
+**Only columns that appear in the GROUP BY clause can appear in the HAVING clause, unless they appear as arguments to an aggregate operation in the HAVING clause**
+
+Thus this query is illegal
+```
+SELECT B.bicl, COUNT (*) AS reservationcount
+FROM Boats B, Reserves R
+WHERE R.bid = B.bid
+GROUP BY B.bid
+HAVING B.color = 'red' /*RED NOT IN GROUP BY */
+```
+
+
+
 RA and SQL: Null values are not part of the basic relational model.
 Tis is a depatures from the basic model
 
