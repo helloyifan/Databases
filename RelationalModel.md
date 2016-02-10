@@ -45,6 +45,36 @@ Properties of a relation
 
 Discrepancies
 1. semantics of instance
-- relations are set of tuples
-- tables are multisets of tuples
+  - relations are set of tuples
+  - tables are multisets of tuples
 2. unknown valuse: SQL data model defines a particular value null
+
+##Integrity Constraints
+
+A relational schema captures only the strucutre of relations
+
+Idea: Extend relational/database schema with rules called constraints. An instance is only valid if it satisfies all schema constraints
+
+Reasons to use constaints
+- ensure data entry/modifications respects database design
+- protect data from bugs in applications
+
+##Types of Integrity Constraints
+
+Tuple level
+- domain restrictions
+- attribute comparisons
+
+Relation-level
+- function dependcies 
+- key constaints
+ - super key: a set of attributes for which no pair of distinct tuples in the realtion will ever agree on the corresponding values
+ - candidate key: a minimal superkey ( a minimal set of attributes that uniquely identifies a tuple_
+ - primary ley: a designated candidate key
+
+Primary key is a Candidate key which in turn is a Super key
+
+Database-level
+- Inclusion dependencies
+- Foreign key: primary key of one relation apprearing as an attribute of another relation
+- Referential Integrity: a tuple with a non null value for a foreign kew that does not match the priary key value of a tuple in the reference relation is not allowed
