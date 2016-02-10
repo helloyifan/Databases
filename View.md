@@ -3,7 +3,7 @@
 Definition View:
 A view is a relation in the external schema whose instance is determined by the instances of the relations in the conceptual schema.
 
-...
+---
 
 A view is a table whose rows are not explicitly stored in the database but are computed as needed from a view definition
 
