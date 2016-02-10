@@ -42,3 +42,9 @@ Properties of a relation
 4. cardinality: number of tuples in a instance
 
 ##Relations vs SQL Tables
+
+Discrepancies
+1. semantics of instance
+- relations are set of tuples
+- tables are multisets of tuples
+2. unknown valuse: SQL data model defines a particular value null
