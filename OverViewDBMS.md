@@ -23,7 +23,7 @@ Two kinds of data independence
 **Data Definition Language DDL**
 for specifying schemas
 * may have different DDLS for external schema, conceptual schema, internal schema
-* informaion is sotred in the data dictionary or catalog
+* informaion is stored in the data dictionary or catalog
 * granting privileges - sometimes separated as Datal Control Languages (DCL)
 
 **Data Manipulation Language (DML)**
