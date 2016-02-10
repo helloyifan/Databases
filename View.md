@@ -11,7 +11,7 @@ A view has many of the same properties as a base relation in the conceptual sche
 Types of views
 
 * virtual: views are used only for querying, they are not stored in the db
-* materialized: the query that make sup the view is executed, the view constructed and stored in the database
+* materialized: the query that makes up the view is executed, the view constructed and stored in the database
 
 ## SQL DDL: Views
 
